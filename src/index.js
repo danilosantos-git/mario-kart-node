@@ -111,30 +111,61 @@ async function playRaceEngine(character1, character2) {
             await logRollResult(character2.nome, "manobrabilidade", diceResult2, character2.manobrabilidade);
         };
 
-        if (block === "confronto") {
-            powerResult1 = diceResult1 + character1.poder;
-            powerResult2 = diceResult2 + character2.poder;
-
-            await logRollResult(character1.nome, "poder", diceResult1, character1.poder);
-
-            await logRollResult(character2.nome, "poder", diceResult2, character2.poder);
-        };
-
-        // Verificar o vencedor
+        // Verificar o vencedor (reta ou curva)
         if (totalTestSkill1 > totalTestSkill2) {
             console.log(`${character1.nome} marcou um ponto! 🎉`);
             character1.pontos++;
         } else if (totalTestSkill1 < totalTestSkill2) {
             console.log(`${character2.nome} marcou um ponto! 🎉`);
             character2.pontos++;
-        }
+        };
+
+        if (block === "confronto") {
+            powerResult1 = diceResult1 + character1.poder;
+            powerResult2 = diceResult2 + character2.poder;
+
+            console.log(`🥊 ${character1.nome} confrontou ${character2.nome} 🥊`);
+
+            await logRollResult(character1.nome, "poder", diceResult1, character1.poder);
+
+            await logRollResult(character2.nome, "poder", diceResult2, character2.poder);
+
+            if (powerResult1 > powerResult2 && character2.pontos > 0) {
+                console.log(`${character1.nome} venceu a batalha!🎯 ${character2.nome} perdeu um ponto.`);
+                character2.pontos--;
+            };
+
+            if (powerResult2 > powerResult1 && character1.pontos > 0) {
+                console.log(`${character2.nome} venceu a batalha!🎯 ${character1.nome} perdeu um ponto.`);
+                character1.pontos--;
+            };
+
+            // If Ternário (Operador Ternário)
+            console.log(powerResult1 === powerResult2 ? `Empate! Nenhum ponto foi removido.` : ``);
+        };
 
         console.log(`-----------------------------`);
     };
 };
 
+async function declareWinner(character1, character2) {
+    console.log(`Resultado final:`);
+    console.log(`${character1.nome}: ${character1.pontos} ponto(s)`);
+    console.log(`${character2.nome}: ${character2.pontos} ponto(s)`);
+
+    if (character1.pontos > character2.pontos) {
+        console.log(`${character1.nome} é o(a) vencedor(a)! 🏆`);
+    } else if (character2.pontos > character1.pontos) {
+        console.log(`${character2.nome} é o(a) vencedor(a)! 🏆`);
+    } else {
+        console.log("Empate! Ninguém ganhou... 😢");
+    }
+}
+
 (async function main() {
     console.log(`🟢 Corrida entre ${player1.nome} e ${player2.nome} começando... \n`);
 
     await playRaceEngine(player1, player2);
+
+    await declareWinner(player1, player2);
 })();
