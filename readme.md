@@ -101,3 +101,28 @@
 
 <input type="checkbox" id="vitoria-item" />
 <label for="vitoria-item">Ao final, vence quem acumulou mais pontos</label>
+
+## Instalação
+
+Para instalar o projeto, siga os passos abaixo:
+
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/danilosantos-git/mario-kart-node.git
+   ```
+2. Navegue até o diretório do projeto:
+   ```bash
+   cd mario-kart-node
+   ```
+3. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+## Execução
+
+Para executar o jogo, utilize o seguinte comando:
+
+```bash
+   node src/index.js
+```
