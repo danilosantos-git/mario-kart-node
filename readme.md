@@ -126,3 +126,83 @@ Para executar o jogo, utilize o seguinte comando:
 ```bash
    node src/index.js
 ```
+
+## Como Jogar
+
+Para jogar Mario Kart.JS, você deve seguir os passos abaixo:
+
+1. **Configuração dos Jogadores**:
+
+   - No arquivo `src/index.js`, você pode definir os jogadores que irão competir. Cada jogador é representado por um objeto que contém as seguintes propriedades:
+     - `nome`: Nome do personagem.
+     - `velocidade`: Atributo que determina a velocidade do personagem.
+     - `manobrabilidade`: Atributo que determina a habilidade de manobrar em curvas.
+     - `poder`: Atributo que determina a força em confrontos.
+     - `pontos`: Inicialmente definido como 0, representa os pontos acumulados durante a corrida.
+
+   Exemplo de configuração de jogadores:
+
+   ```javascript
+   const player1 = {
+     nome: "Mario",
+     velocidade: 4,
+     manobrabilidade: 3,
+     poder: 3,
+     pontos: 0,
+   };
+
+   const player2 = {
+     nome: "Luigi",
+     velocidade: 3,
+     manobrabilidade: 4,
+     poder: 4,
+     pontos: 0,
+   };
+   ```
+
+2. **Iniciar a Corrida**:
+
+   - Após definir os jogadores, você pode iniciar a corrida chamando a função `playRaceEngine` com os dois jogadores como argumentos. Por exemplo:
+
+   ```javascript
+   await playRaceEngine(player1, player2);
+   ```
+
+3. **Objetivo do Jogo**:
+
+   - O objetivo é acumular o maior número de pontos ao final de 5 rodadas. Os pontos são ganhos em retas e curvas, e podem ser perdidos em confrontos.
+
+4. **Resultado**:
+   - Ao final da corrida, a função `declareWinner` será chamada para mostrar o resultado e declarar o vencedor.
+
+## Funções Principais
+
+### 1. `playRaceEngine`
+
+- **Localização**: A função `playRaceEngine` está definida no arquivo `src/index.js`.
+- **Descrição**: Esta função é responsável por gerenciar a lógica da corrida entre dois personagens. Ela simula 5 rodadas de corrida, onde os jogadores competem em diferentes blocos da pista (reta, curva ou confronto).
+- **Parâmetros**:
+  - `character1`: O primeiro personagem que irá competir.
+  - `character2`: O segundo personagem que irá competir.
+
+**Exemplo de uso**:
+
+```javascript
+await playRaceEngine(player1, player2);
+```
+
+### 2. `declareWinner`
+
+- **Localização**: A função `declareWinner` também está definida no arquivo `src/index.js`.
+- **Descrição**: Esta função é chamada após a corrida para declarar o vencedor com base nos pontos acumulados pelos personagens.
+- **Parâmetros**:
+  - `character1`: O primeiro personagem que participou da corrida.
+  - `character2`: O segundo personagem que participou da corrida.
+
+**Exemplo de uso**:
+
+```javascript
+await declareWinner(player1, player2);
+```
+
+Siga essas instruções para configurar e jogar o Mario Kart.JS!
