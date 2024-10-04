@@ -160,7 +160,7 @@ async function declareWinner(character1, character2) {
     } else {
         console.log("Empate! Ninguém ganhou... 😢");
     }
-}
+};
 
 (async function main() {
     console.log(`🟢 Corrida entre ${player1.nome} e ${player2.nome} começando... \n`);
